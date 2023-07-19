@@ -91,7 +91,7 @@ const SignUp = () => {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password (password must be 6 character or more)
+                  Password <span className="text-sm text-black/50">(must be 6 characters or more)</span>
                 </label>
               </div>
               <div className="mt-2 relative">
