@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 const SignUp = () => {
@@ -9,15 +9,17 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  
+  const navigate = useNavigate();
+
   const signUp = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password, displayName)
       .then((userCredential) => {
         console.log(userCredential);
+        navigate("/");
         updateProfile(userCredential.user, { displayName: displayName })
           .then(() => {
-            console.log("User display name added successfully!");
+            // console.log("User display name added successfully!");
           })
           .catch((error) => {
             console.log("Error adding user display name: ", error);
