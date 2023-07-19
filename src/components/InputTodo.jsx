@@ -12,7 +12,7 @@ const InputTodo = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-10 flex gap-2">
+    <form onSubmit={handleSubmit} className="mt-10 xl:mt-20 flex gap-2">
       <input
         type="text"
         value={inputTodo}

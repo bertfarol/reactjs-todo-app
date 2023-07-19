@@ -61,7 +61,7 @@ const Comments = ({ path, todoId }) => {
       </button>
       {openModal && (
         <div className="fixed top-0 left-0 h-full w-full bg-black/20 grid place-items-center">
-          <div className="w-11/12 lg:w-1/3 shadow-lg z-10 bg-white rounded-md">
+          <div className="w-11/12 lg:w-1/3 shadow-lg z-10 bg-white rounded-md absolute top-[100px] left-[50%] translate-x-[-50%]">
             <div className="px-4 pt-2.5 pb-2 border-b flex items-center justify-between">
               <h2 className="text-lg font-medium text-[#464D52]">
                 Add comment
