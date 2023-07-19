@@ -5,15 +5,20 @@ import { TodoContext } from "../context/TodoContextProvider";
 import { Icon } from "@iconify/react";
 import useAuth from "../hooks/useAuth";
 import UpdateComment from "./UpdateComment";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const Comments = ({ path, todoId }) => {
   const [openModal, setOpenModal] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [parent] = useAutoAnimate();
 
   const { addCommentToTodo, deleteComment } = useContext(TodoContext);
   const todosCommentsCollectionRef = collection(db, path);
-  const todoCommentQuery = query(todosCommentsCollectionRef, orderBy("createdAt", "desc"));
+  const todoCommentQuery = query(
+    todosCommentsCollectionRef,
+    orderBy("createdAt", "desc")
+  );
   const { userAuth } = useAuth();
 
   useEffect(() => {
@@ -89,23 +94,27 @@ const Comments = ({ path, todoId }) => {
                 Add
               </button>
             </form>
-            <div className="p-4 border-t">
+            <div className="p-4 border-t" ref={parent}>
               {comments?.map((comment) => (
                 <div key={comment.id} className="mb-2 relative">
                   <div className="bg-[#f0f2f5] px-4 py-2.5 rounded-xl flex justify-between">
                     <div>
-                      <div className="font-medium text-sm">{comment.user} </div>
+                      <div className="font-medium text-sm capitalize">
+                        {comment.user}{" "}
+                      </div>
                       {comment.comment}
                     </div>
-                    <div className="flex items-center justify-center gap-3">
-                      <UpdateComment data={comment} todoId={todoId} />
-                      <button
-                        onClick={() => deleteComment(todoId, comment.id)}
-                        className=" hover:text-red-500 text-gray-500"
-                      >
-                        <Icon icon="mi:delete" className="w-5 h-5" />
-                      </button>
-                    </div>
+                    {userAuth?.email === comment.userEmail && (
+                      <div className="flex items-center justify-center gap-3">
+                        <UpdateComment data={comment} todoId={todoId} />
+                        <button
+                          onClick={() => deleteComment(todoId, comment.id)}
+                          className=" hover:text-red-500 text-gray-500"
+                        >
+                          <Icon icon="mi:delete" className="w-5 h-5" />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

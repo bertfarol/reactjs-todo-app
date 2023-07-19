@@ -1,12 +1,14 @@
 import { Icon } from "@iconify/react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState} from "react";
 import { TodoContext } from "../context/TodoContextProvider";
+
 
 const UpdateComment = ({ data, todoId }) => {
   const { comment, id } = data;
   const [inputComment, setInputComment] = useState(comment);
   const [openEditForm, setOpenEditForm] = useState(false);
   const { updateTodoComment } = useContext(TodoContext);
+
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -18,10 +20,14 @@ const UpdateComment = ({ data, todoId }) => {
     }
   };
 
+   const handleButtonClick = () => {
+     setOpenEditForm(!openEditForm);
+   };
+
   return (
     <>
       <button
-        onClick={() => setOpenEditForm(!openEditForm)}
+        onClick={handleButtonClick}
         className="hover:text-blue-500 text-gray-500"
       >
         <Icon icon="bxs:edit" className="w-5 h-5" />
@@ -39,6 +45,7 @@ const UpdateComment = ({ data, todoId }) => {
           />
           <div className="flex gap-1 items-center">
             <button
+              type="button"
               onClick={() => setOpenEditForm(false)}
               className="px-2.5 py-1 rounded-lg font-medium"
             >

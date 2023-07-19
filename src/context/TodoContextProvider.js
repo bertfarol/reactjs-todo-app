@@ -98,7 +98,6 @@ const TodoContextProvider = ({ children }) => {
      const todoDocRef = doc(db, "todos", todoId);
      const commentsDocRef = doc(todoDocRef, "comments", commentId);
      await updateDoc(commentsDocRef, newFields);
-     console.log("Updated comment!");
    } catch (e) {
      console.log("Error updating document", e);
    }

@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className="max-w-4xl mx-auto px-4 py-2 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Todo</h1>
         <div className="flex items-center gap-3 relative group">
-          <div className="font-medium text-zinc-500">
+          <div className="font-medium text-zinc-500 capitalize">
             Hi, {userAuth?.displayName}
           </div>
           <div className="h-10 w-10 bg-[#eaeaea] rounded-full grid place-items-center overflow-hidden">
@@ -36,7 +36,7 @@ const Navbar = () => {
           <div className="absolute top-[10px] right-0 pt-8 group-hover:inline-block hidden">
             <div
               onClick={userSignOut}
-              className="rounded-lg py-2 px-4 shadow-md cursor-pointer bg-white hover:bg-gray-100"
+              className="border rounded-lg py-2 px-4 shadow-md cursor-pointer bg-white hover:bg-gray-100"
             >
               Logout
             </div>
