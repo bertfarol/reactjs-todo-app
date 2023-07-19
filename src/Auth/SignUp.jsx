@@ -9,6 +9,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const signUp = (e) => {
@@ -27,6 +28,7 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
+        alert("Password must be 6 characters or more");
       });
   };
 
@@ -89,7 +91,7 @@ const SignUp = () => {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  Password (password must be 6 character or more)
                 </label>
               </div>
               <div className="mt-2 relative">
